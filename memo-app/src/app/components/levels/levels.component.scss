@@ -5,5 +5,43 @@
   //arrangement
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.icons-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text-container {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.icon-text {
+  font-weight: 400;
+  font-size: 15.5465px;
+  line-height: 19px;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-icon {
+  color: red;
 }
