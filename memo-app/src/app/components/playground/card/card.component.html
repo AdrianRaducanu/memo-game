@@ -1,6 +1,8 @@
 <div
-  class="card"
-  [ngClass]="isCardRevealed ? 'card-revealed' : ''"
-  (click)="onClick()"
->
-</div>
+  class="card-cover"
+    [ngClass]="isCardRevealed ? 'card-uncover' : ''"
+    (click)="onClick()"
+></div>
+<div #card
+     class="card"
+></div>

@@ -7,16 +7,20 @@
   box-shadow: 4.30741px 4.30741px 53.8426px rgba(0, 0, 0, 0.1);
   border-radius: 30.1519px;
 
+  //alignment
   display: flex;
   align-items: center;
   justify-content: center;
 
+  //for the text-container with position absolute
   position: relative;
 }
 
 .cards-grid {
   width: 80%;
   height: 70%;
+
+  //alignment
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -29,6 +33,9 @@
 .card-container {
   width: 130px;
   height: 150px;
+
+  //for the card-cover with position absolute
+  position: relative;
 }
 
 .text-container {

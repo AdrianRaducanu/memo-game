@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {cardsProperties, Card} from "./cardsProperties";
 
 @Component({
   selector: 'app-playground',
@@ -7,11 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaygroundComponent implements OnInit {
 
-  arrayOfItems: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  cardsProperties: Card[] = cardsProperties;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.getRandomPosition();
+
+  }
+
+  getRandomPosition() {
+    this.cardsProperties.forEach((element) => {
+      element.randomNo = Math.random();
+    });
+    this.cardsProperties.sort((a, b)=> a.randomNo - b.randomNo);
   }
 
 }

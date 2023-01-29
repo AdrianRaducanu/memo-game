@@ -3,8 +3,10 @@
     <div class="text-container">
       Time left: 5s
     </div>
-    <div *ngFor="let i of this.arrayOfItems" class="card-container">
-      <app-card></app-card>
+    <div *ngFor="let card of cardsProperties" class="card-container">
+      <app-card
+        [card]="card"
+      ></app-card>
     </div>
   </div>
 
