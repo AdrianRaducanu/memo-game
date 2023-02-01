@@ -1,7 +1,11 @@
-<div
-  class="card-cover"
-    [ngClass]="isCardRevealed ? 'card-uncover' : ''"
-    (click)="onClick()"
+<!--<div class="card-cover"-->
+<!--    [ngClass]="shouldCardBeRevealed() ? 'card-uncover' : ''"-->
+<!--    (click)="onClick()"-->
+<!--&gt;</div>-->
+<div class="card-cover"
+     [ngClass]="isRevealed ? 'card-uncover' : ''"
+     [ngStyle]="{'pointer-events': canReveal? 'all' : 'none'}"
+     (click)="onClick()"
 ></div>
 <div #card
      class="card"

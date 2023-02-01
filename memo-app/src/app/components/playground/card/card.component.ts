@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Card} from "../cardsProperties";
 
 @Component({
@@ -8,12 +8,21 @@ import {Card} from "../cardsProperties";
 })
 export class CardComponent implements AfterViewInit {
 
-  @Input() card : Card = {randomNo: 0, image: ""};
-  @Input() index: number = 0;
+  @Input() card : Card = {id: 0, randomNo: 0, image: ""};
+  @Input() canReveal: boolean = true;
+
+  private _isRevealed: boolean = false;
+  @Input() set isRevealed(cond: boolean) {
+    this._isRevealed = cond;
+  }
+  get isRevealed() {
+    return this._isRevealed;
+  }
+
+
+  @Output() revealACard: any = new EventEmitter<Card>();
 
   @ViewChild('card') cardHTML: any;
-
-  isCardRevealed: boolean = false;
 
   constructor() { }
 
@@ -22,7 +31,15 @@ export class CardComponent implements AfterViewInit {
   }
 
   onClick() {
-    this.isCardRevealed = !this.isCardRevealed;
+    this.revealACard.emit(this.card);
   }
+
+  //Lvl hard - u cant see the second card until its a pair
+  // shouldCardBeRevealed(): boolean {
+  //   if(this.firstCard === this.card) {
+  //     return true;
+  //   }
+  //   return this.cardsPair.includes(this.card.image);
+  // }
 
 }

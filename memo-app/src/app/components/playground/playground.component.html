@@ -1,4 +1,4 @@
-<div class="playground-container">
+<div class="playground-container" >
   <div class="cards-grid">
     <div class="text-container">
       Time left: 5s
@@ -6,6 +6,9 @@
     <div *ngFor="let card of cardsProperties" class="card-container">
       <app-card
         [card]="card"
+        [isRevealed]="cardsVisible.includes(card)"
+        [canReveal]="canReveal"
+        (revealACard)="revealACard($event)"
       ></app-card>
     </div>
   </div>

@@ -4,7 +4,6 @@
 
   //alignment
   background-size: cover;
-  cursor: pointer;
   border-radius: 10px;
 
   //z-index smaller than the cover layer
@@ -14,7 +13,7 @@
   width: 100%;
   height: 100%;
 
-  background: #D9D9D9;
+  background: rgb(217, 217, 217);
   border-radius: 10px;
 
   //the position is absolute related to the first parent with relative position
@@ -22,6 +21,7 @@
 
   cursor: pointer;
   z-index: 11;
+  pointer-events: all;
 
   //for the bg transition to be smoother
   transition: background 0.5s ease;
@@ -29,4 +29,5 @@
 
 .card-uncover {
   background: transparent;
+  pointer-events: none;
 }
