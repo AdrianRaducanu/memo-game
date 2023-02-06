@@ -1,5 +1,5 @@
 <div class="playground-container" >
-  <div class="cards-grid" *ngIf="!gameStop else winning">
+  <div class="cards-grid" *ngIf="!gameStop else resultTemplate">
     <div class="text-container">
       Time left: {{timer}}s
     </div>
@@ -12,7 +12,13 @@
       ></app-card>
     </div>
   </div>
-  <ng-template #winning>
-    <h1>Guess what.. you {{gameResult}}</h1>
+  <ng-template #resultTemplate >
+    <div class="game-finished">
+      <h1>Guess what.. you {{gameResult}} {{(levelSelected === 4 && gameResult === 'WON') ? 'THE GAME. You really are the God of Nerds!' : ''}}</h1>
+      <button class="btn-next"
+              (click)="startNewGame()"
+              *ngIf="!(levelSelected === 4 && gameResult === 'WON')"
+      >{{returnTextAfterGameIsFinished()}}</button>
+    </div>
   </ng-template>
 </div>

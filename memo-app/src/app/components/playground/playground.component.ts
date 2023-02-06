@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {cardsProperties, Card} from "./cardsProperties";
 import {BehaviorSubject, Subject} from "rxjs";
 
@@ -19,9 +19,13 @@ export class PlaygroundComponent implements OnInit {
   canReveal: boolean = true;
 
   //timer limit
-  timer: number = 1;
+  @Input() timer: number = 50;
   startTimer: boolean = false;
   intervalId: any = '';
+
+  //for the game engine
+  @Output() gameResultEventEmitter = new EventEmitter<string>();
+  @Input() levelSelected:number = 0;
 
   constructor() { }
 
@@ -60,20 +64,37 @@ export class PlaygroundComponent implements OnInit {
     if(this.cardsVisible.length === 10) {
       this.gameStop = true;
       this.gameResult = "WON";
-      clearInterval(this.intervalId)
+      clearInterval(this.intervalId);
     }
   }
 
   handleTimer() {
     this.intervalId = setInterval(()=>{
-      console.log("EOIFJ")
       this.timer -= 1;
       if(!this.timer) {
         this.gameStop = true;
         this.gameResult = "LOST";
-        clearInterval(this.intervalId)
+        clearInterval(this.intervalId);
       }
     }, 1000);
+  }
 
+  startNewGame() {
+    this.gameResultEventEmitter.emit(this.gameResult);
+    this.gameStop = false;
+    this.startTimer = false;
+    this.gameResult = '';
+    this.canReveal= true;
+    this.cardsVisible = [];
+    this.timer = 50;
+    this.getRandomPosition();
+  }
+
+  returnTextAfterGameIsFinished() {
+    if(this.gameResult === "LOST") {
+      return this.levelSelected === 0 ? 'Try again noob!' : 'You are unprepared. Go back';
+    } else {
+      return this.levelSelected < 4 ? 'Ready for a new challenge?' : '';
+    }
   }
 }

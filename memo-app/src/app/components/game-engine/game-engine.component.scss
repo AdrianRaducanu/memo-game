@@ -1,0 +1,17 @@
+.game-engine-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.playground {
+  width: 70%;
+  height: 75%;
+}
+
+.levels {
+  height: 15%;
+  width: 20%;
+}

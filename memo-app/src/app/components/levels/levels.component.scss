@@ -25,6 +25,22 @@
   line-height: 30px;
 }
 
+.icon-image {
+  width: 20px;
+  height: 24px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.icon-lock {
+  background: url("../../../assets/Icons/lock.svg");
+  cursor: not-allowed;
+}
+
+.icon-unlock {
+  background: url("../../../assets/Icons/unlock.svg");
+}
+
 .icon-text {
   font-weight: 400;
   font-size: 15.5465px;
@@ -42,8 +58,4 @@
   flex-direction: column;
   align-items: center;
   gap: 10px;
-}
-
-.icon-icon {
-  color: red !important;
 }

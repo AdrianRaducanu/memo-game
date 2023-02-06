@@ -1,0 +1,13 @@
+<div class="game-engine-container">
+  <div class="playground">
+    <app-playground
+      [timer]="arrayOfLevels[levelSelected].time"
+      [levelSelected]="levelSelected"
+      (gameResultEventEmitter)="handleGameResult($event)"
+    ></app-playground>
+  </div>
+  <div class="levels">
+    <app-levels [arrayOfLevels]="arrayOfLevels"></app-levels>
+  </div>
+</div>
+

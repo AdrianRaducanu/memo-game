@@ -2,11 +2,10 @@
   <div class="text-container">Level</div>
   <div class="icons-container">
     <div class="icon-container" *ngFor="let i of arrayOfLevels">
-      <fa-icon
-        [icon]="faUnlock"
-        class="icon-icon"
-        [styles]="{width: '16px'}"></fa-icon>
-      <div class="icon-text">{{i}}</div>
+      <div class="icon-image"
+           [ngClass]="i.unlock? 'icon-unlock' : 'icon-lock'"
+      ></div>
+      <div class="icon-text">{{i.text}}</div>
     </div>
   </div>
 </div>

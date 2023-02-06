@@ -6,13 +6,15 @@ import { PlaygroundComponent } from './components/playground/playground.componen
 import { LevelsComponent } from './components/levels/levels.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CardComponent } from './components/playground/card/card.component';
+import { GameEngineComponent } from './components/game-engine/game-engine.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlaygroundComponent,
     LevelsComponent,
-    CardComponent
+    CardComponent,
+    GameEngineComponent
   ],
   imports: [
     BrowserModule,
