@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {cardsProperties, Card} from "./cardsProperties";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Component({
   selector: 'app-playground',
@@ -10,10 +11,17 @@ export class PlaygroundComponent implements OnInit {
 
   cardsProperties: Card[] = cardsProperties;
   cardsVisible: Card[] = [];
-  gameWon: boolean = false;
+
+  gameStop: boolean = false;
+  gameResult: string = '';
 
   //so the player cant reveal more than 2 cards
   canReveal: boolean = true;
+
+  //timer limit
+  timer: number = 1;
+  startTimer: boolean = false;
+  intervalId: any = '';
 
   constructor() { }
 
@@ -29,6 +37,12 @@ export class PlaygroundComponent implements OnInit {
   }
 
   revealACard(card: Card): void {
+    //start timer at the first card clicked
+    if (!this.startTimer) {
+      this.startTimer = true;
+      this.handleTimer();
+    }
+
     if(this.cardsVisible.length % 2 === 0) {
       this.cardsVisible.push(card);
     } else {
@@ -38,12 +52,28 @@ export class PlaygroundComponent implements OnInit {
         this.cardsVisible.push(card);
         this.canReveal = false;
         setTimeout(() => {
-          this.cardsVisible.pop();
-          this.cardsVisible.pop();
+          this.cardsVisible.splice(-2);
           this.canReveal = true;
-        }, 3000)
+        }, 500);
       }
     }
-    this.cardsVisible.length === 10 ? this.gameWon = true : null;
+    if(this.cardsVisible.length === 10) {
+      this.gameStop = true;
+      this.gameResult = "WON";
+      clearInterval(this.intervalId)
+    }
+  }
+
+  handleTimer() {
+    this.intervalId = setInterval(()=>{
+      console.log("EOIFJ")
+      this.timer -= 1;
+      if(!this.timer) {
+        this.gameStop = true;
+        this.gameResult = "LOST";
+        clearInterval(this.intervalId)
+      }
+    }, 1000);
+
   }
 }

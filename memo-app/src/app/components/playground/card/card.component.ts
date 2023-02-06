@@ -34,12 +34,4 @@ export class CardComponent implements AfterViewInit {
     this.revealACard.emit(this.card);
   }
 
-  //Lvl hard - u cant see the second card until its a pair
-  // shouldCardBeRevealed(): boolean {
-  //   if(this.firstCard === this.card) {
-  //     return true;
-  //   }
-  //   return this.cardsPair.includes(this.card.image);
-  // }
-
 }

@@ -1,7 +1,7 @@
 <div class="playground-container" >
-  <div class="cards-grid">
+  <div class="cards-grid" *ngIf="!gameStop else winning">
     <div class="text-container">
-      Time left: 5s
+      Time left: {{timer}}s
     </div>
     <div *ngFor="let card of cardsProperties" class="card-container">
       <app-card
@@ -12,5 +12,7 @@
       ></app-card>
     </div>
   </div>
-
+  <ng-template #winning>
+    <h1>Guess what.. you {{gameResult}}</h1>
+  </ng-template>
 </div>
