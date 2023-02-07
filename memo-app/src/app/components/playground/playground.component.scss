@@ -1,3 +1,5 @@
+@import "../../../styles";
+
 .playground-container {
   width: 100%;
   height: 100%;
@@ -39,6 +41,9 @@
 }
 
 .text-container {
+  @include font-style-mixin;
+  color: #343434;
+
   position: absolute;
   font-weight: 500;
   font-size: 24px;

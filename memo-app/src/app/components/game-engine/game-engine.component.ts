@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameEngineComponent implements OnInit {
 
-
   arrayOfLevels = [
     {
       text: "Noob",
@@ -35,7 +34,6 @@ export class GameEngineComponent implements OnInit {
       time: 10
     },
   ];
-
 
   levelSelected = 0;
 

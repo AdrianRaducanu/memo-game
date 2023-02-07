@@ -1,3 +1,5 @@
+@import "../../../styles";
+
 .levels-container {
   width: 100%;
   height: 100%;
@@ -20,6 +22,9 @@
 }
 
 .text-container {
+  @include font-style-mixin;
+  color: #343434;
+
   font-weight: 500;
   font-size: 20px;
   line-height: 30px;
@@ -42,9 +47,26 @@
 }
 
 .icon-text {
+  @include font-style-mixin;
+
   font-weight: 400;
   font-size: 15.5465px;
   line-height: 19px;
+}
+.icon-text-lock {
+  color: #B8B8B8;
+}
+
+.icon-text-unlock {
+  color: #343434;
+}
+
+.selected-level {
+  width: 15px;
+  height: 2px;
+  background: #FFA800;
+  position: absolute;
+  bottom: 3%;
 }
 
 .icons-container {

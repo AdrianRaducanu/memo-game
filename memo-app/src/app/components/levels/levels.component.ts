@@ -16,7 +16,9 @@ export class LevelsComponent implements OnInit {
       unlock: true,
       time: 40
     }
-  ]
+  ];
+
+  @Input() selectedLevel: number = 0;
 
   constructor() { }
 

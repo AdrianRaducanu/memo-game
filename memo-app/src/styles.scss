@@ -6,5 +6,10 @@
   margin: 0;
   font-family: 'Inter', sans-serif;
   font-style: normal;
-  color: #343434;
+
+}
+
+@mixin font-style-mixin {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
 }
