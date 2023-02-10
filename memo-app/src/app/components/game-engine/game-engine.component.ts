@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameEngineComponent implements OnInit {
 
+  levelSelected = 2;
   arrayOfLevels = [
     {
       text: "Noob",
@@ -15,12 +16,12 @@ export class GameEngineComponent implements OnInit {
     },
     {
       text: "Meh",
-      unlock: false,
+      unlock: true,
       time: 35
     },
     {
       text: "Okish",
-      unlock: false,
+      unlock: true,
       time: 25
     },
     {
@@ -35,10 +36,12 @@ export class GameEngineComponent implements OnInit {
     },
   ];
 
-  levelSelected = 0;
+  constructor() { }
+
+  ngOnInit(): void {
+  }
 
   increaseLevel() {
-
     if(this.levelSelected < 4) {
       this.arrayOfLevels[this.levelSelected + 1].unlock = true;
       this.levelSelected++;
@@ -48,9 +51,16 @@ export class GameEngineComponent implements OnInit {
   }
 
   decreaseLevel() {
+    //lets say u unlocked 4 levels and u wanna play lvl1 again. If u lose, all levels above 1 will be locked
+    this.arrayOfLevels.forEach((element, index) => {
+      index > this.levelSelected ? element.unlock = false : '';
+    })
+
     if (this.levelSelected !== 0) {
       this.arrayOfLevels[this.levelSelected].unlock = false;
       this.levelSelected--;
+    } else {
+      this.levelSelected = 0;
     }
   }
 
@@ -60,9 +70,7 @@ export class GameEngineComponent implements OnInit {
       this.decreaseLevel() ;
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
+  handleNewLevelEmitter(index: number) {
+    this.levelSelected = index;
   }
-
 }

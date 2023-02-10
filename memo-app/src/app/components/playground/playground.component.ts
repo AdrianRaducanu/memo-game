@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {cardsProperties, Card} from "./cardsProperties";
-import {BehaviorSubject, Subject} from "rxjs";
 
 @Component({
   selector: 'app-playground',
@@ -25,7 +24,21 @@ export class PlaygroundComponent implements OnInit {
 
   //for the game engine
   @Output() gameResultEventEmitter = new EventEmitter<string>();
-  @Input() levelSelected:number = 0;
+
+
+  //get & set
+  private _levelSelected: number = 0;
+  @Input() set levelSelected(lvl: number) {
+    this._levelSelected = lvl;
+
+    //i do this in order to clear all the variables and the timer (like a new game)
+    this.clearVariables();
+    this.getRandomPosition();
+    clearInterval(this.intervalId);
+  }
+  get levelSelected() : number {
+    return this._levelSelected;
+  }
 
   constructor() { }
 
@@ -46,7 +59,6 @@ export class PlaygroundComponent implements OnInit {
       this.startTimer = true;
       this.handleTimer();
     }
-
     if(this.cardsVisible.length % 2 === 0) {
       this.cardsVisible.push(card);
     } else {
@@ -80,13 +92,11 @@ export class PlaygroundComponent implements OnInit {
   }
 
   startNewGame() {
+    if(this.levelSelected === 0 && this.gameResult === "LOST") {
+      this.timer = 50;
+    }
     this.gameResultEventEmitter.emit(this.gameResult);
-    this.gameStop = false;
-    this.startTimer = false;
-    this.gameResult = '';
-    this.canReveal= true;
-    this.cardsVisible = [];
-    this.timer = 50;
+    this.clearVariables();
     this.getRandomPosition();
   }
 
@@ -96,5 +106,13 @@ export class PlaygroundComponent implements OnInit {
     } else {
       return this.levelSelected < 4 ? 'Ready for a new challenge?' : '';
     }
+  }
+
+  clearVariables() {
+    this.gameStop = false;
+    this.startTimer = false;
+    this.gameResult = '';
+    this.canReveal= true;
+    this.cardsVisible = [];
   }
 }

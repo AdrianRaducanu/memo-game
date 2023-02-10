@@ -3,6 +3,7 @@
   <div class="icons-container">
     <div class="icon-container" *ngFor="let level of arrayOfLevels; let index = index">
       <div class="icon-image"
+           (click)="selectLevel(index)"
            [ngClass]="level.unlock? 'icon-unlock' : 'icon-lock'"
       ></div>
       <div class="icon-text" [ngClass]="level.unlock ? 'icon-text-unlock' : 'icon-text-lock'">{{level.text}}</div>
